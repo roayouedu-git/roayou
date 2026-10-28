@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
-<title>등록 정보 입력 | 로아유에듀</title>
+<title>이프렌즈 가족캠프 등록 | 로아유에듀</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 :root{--ink:#222;--text:#484848;--muted:#717171;--line:#ebebeb;--soft:#f7f7f7;--pink:#fb7185;--pink-d:#e11d48;--ok:#0f9d58}
@@ -21,8 +21,9 @@ h1{font-size:1.4rem;line-height:1.3;color:var(--ink);letter-spacing:-.02em;margi
 .f{margin:0 0 12px}
 .lab{display:block;font-size:.84rem;color:var(--muted);margin:0 0 5px;font-weight:600}
 .lab i{color:var(--pink-d);font-style:normal}
-input[type=text],input[type=tel],input[type=date],select{width:100%;border:1px solid #ddd;border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
-input:focus,select:focus{outline:2px solid var(--pink);border-color:var(--pink)}
+input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{width:100%;border:1px solid #ddd;border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pink);border-color:var(--pink)}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chip{position:relative}
@@ -35,8 +36,15 @@ input:focus,select:focus{outline:2px solid var(--pink);border-color:var(--pink)}
 .person h3{margin:0 0 10px;font-size:.95rem;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
 .person h3 button{border:0;background:none;color:var(--muted);font:inherit;font-size:.82rem;cursor:pointer;text-decoration:underline}
 .add{width:100%;border:1px dashed var(--pink);background:#fff1f2;color:var(--pink-d);border-radius:12px;padding:12px;font:inherit;font-weight:700;cursor:pointer}
-.agree{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--ink)}
-.agree input{margin-top:4px;width:18px;height:18px}
+.add:disabled{opacity:.45;cursor:default}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line);font-size:.92rem;color:var(--ink);cursor:pointer}
+.opt:first-of-type{border-top:0;padding-top:0}
+.opt input{margin-top:4px;width:18px;height:18px;flex:0 0 auto}
+.opt small{display:block;color:var(--muted);font-size:.8rem;font-weight:400}
+.grp{font-size:.78rem;color:var(--muted);font-weight:700;letter-spacing:.02em;margin:12px 0 4px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--ink);margin:0 0 10px}
+.agree input{margin-top:4px;width:18px;height:18px;flex:0 0 auto}
+.agree a{color:var(--pink-d)}
 .submit{width:100%;border:0;background:var(--pink);color:#fff;border-radius:14px;padding:16px;font:inherit;font-size:1.05rem;font-weight:800;cursor:pointer;margin-top:6px}
 .submit:disabled{opacity:.6;cursor:default}
 .err{color:var(--pink-d);font-size:.88rem;margin:10px 0 0;min-height:1.2em}
@@ -50,145 +58,233 @@ input:focus,select:focus{outline:2px solid var(--pink);border-color:var(--pink)}
 <body>
 <div class="wrap">
   <div class="top"><div class="logo">R</div><b>로아유에듀</b></div>
-  <h1 id="title">등록 정보 입력</h1>
-  <p class="sub" id="sub">학원 등록에 필요한 최소 정보만 받아요. 2~3분이면 끝납니다.</p>
+  <h1 id="title">세부 이프렌즈 가족캠프 등록</h1>
+  <p class="sub">한 번만 적으시면 로아유에듀와 이프렌즈 학원에 동시에 접수돼요. 3분이면 끝납니다.</p>
 
-  <form id="form" novalidate>
+  <form id="form" novalidate autocomplete="on">
+    <div class="card">
+      <h2>연락처</h2>
+      <div class="f"><label class="lab" for="phone">출국자 연락처 <i>*</i></label><input type="tel" id="phone" placeholder="01012345678" required autocomplete="tel"><p class="hint">접수 확인 카톡을 드릴 번호예요. 숫자만 적어도 돼요.</p></div>
+      <div class="f"><label class="lab" for="email">이메일</label><input type="email" id="email" placeholder="email@example.com" autocomplete="email"></div>
+    </div>
+
     <div class="card">
       <h2>일정</h2>
       <div class="row">
-        <div class="f"><label class="lab" for="start">시작일 <i>*</i></label><input type="date" id="start" required></div>
+        <div class="f"><label class="lab" for="start">연수 시작일 <i>*</i></label><input type="date" id="start" required></div>
         <div class="f"><label class="lab" for="weeks">희망 주수 <i>*</i></label>
           <select id="weeks" required>
             <option value="">고르기</option>
-            <option>1주</option><option>2주</option><option>3주</option><option selected>4주</option>
-            <option>5주</option><option>6주</option><option>7주</option><option>8주</option>
-            <option>9주</option><option>10주</option><option>11주</option><option>12주</option>
-            <option>12주 이상</option>
+            <option value="1">1주</option><option value="2">2주</option><option value="3">3주</option><option value="4" selected>4주</option>
+            <option value="6">6주</option><option value="8">8주</option><option value="10">10주</option><option value="12">12주</option>
+            <option value="16">16주</option><option value="20">20주</option><option value="24">24주</option>
           </select></div>
       </div>
-      <div class="f"><label class="lab" for="phone">연락처 <i>*</i></label><input type="tel" id="phone" placeholder="010-1234-5678" required autocomplete="tel"><p class="hint">접수 확인 카톡을 드릴 번호예요.</p></div>
+      <p class="hint" id="endhint"></p>
+      <div class="f" style="margin-top:12px"><label class="lab" for="depart">희망 출발일 <span style="font-weight:400">(항공권 기준, 정해졌을 때만)</span></label><input type="date" id="depart"></div>
     </div>
 
     <div class="card">
-      <h2>가는 사람 <span class="hint" id="count"></span></h2>
-      <p class="hint" style="margin:0 0 12px">보호자와 아이 모두 한 명씩 적어주세요. 영문 이름은 <b>여권에 적힌 그대로</b> 적어주세요.</p>
-      <div id="people"></div>
-      <button type="button" class="add" id="add">+ 한 명 더 추가</button>
+      <h2>프로그램 선택 <i style="color:var(--pink-d);font-style:normal">*</i></h2>
+      <div id="programs"></div>
+      <div class="grp">추가 사항 (해당하면 체크)</div>
+      <label class="opt"><input type="checkbox" name="addon" value="01"><span>통학형</span></label>
+      <label class="opt"><input type="checkbox" name="addon" value="02"><span>외부기숙사 업그레이드</span></label>
+      <label class="opt"><input type="checkbox" name="addon" value="03"><span>기타 <small>아래 문의란에 적어주세요</small></span></label>
     </div>
 
     <div class="card">
-      <label class="agree"><input type="checkbox" id="agree" required><span>학원 등록을 위해 위 정보를 로아유에듀와 해당 학원에 전달하는 데 동의합니다. 등록 절차가 끝나면 목적 외에는 쓰지 않아요.</span></label>
+      <h2>엄마 정보</h2>
+      <p class="hint" style="margin:0 0 12px">영문 이름과 생년월일은 <b>여권에 적힌 그대로</b> 적어주세요.</p>
+      <div class="f"><label class="lab" for="mko">성명 <i>*</i></label><input type="text" id="mko" placeholder="홍길동" required></div>
+      <div class="f"><label class="lab" for="men">영문명 (여권) <i>*</i></label><input type="text" id="men" placeholder="HONG GILDONG" required style="text-transform:uppercase"></div>
+      <div class="row">
+        <div class="f"><label class="lab" for="mb">생년월일 <i>*</i></label><input type="date" id="mb" required></div>
+        <div class="f"><span class="lab">성별</span><div class="chips">
+          <label class="chip"><input type="radio" name="mg" value="F" checked><span>여</span></label>
+          <label class="chip"><input type="radio" name="mg" value="M"><span>남</span></label></div></div>
+      </div>
+      <p class="hint">엄마 대신 아빠가 가시면 아빠 정보를 적고 성별을 바꿔주세요. 아이만 가면 비워두세요.</p>
     </div>
 
-    <button type="submit" class="submit" id="submit">등록 정보 보내기</button>
+    <div class="card">
+      <h2>아이 정보 <span class="hint" id="count"></span></h2>
+      <div id="kids"></div>
+      <button type="button" class="add" id="add">+ 아이 추가 (최대 3명)</button>
+    </div>
+
+    <div class="card">
+      <h2>연수 목적 · 문의</h2>
+      <div class="f"><textarea id="remark" placeholder="예: 아이 영어는 파닉스 단계예요. 형제가 같은 반이면 좋겠어요."></textarea></div>
+    </div>
+
+    <div class="card">
+      <label class="agree"><input type="checkbox" id="agree" required><span>로아유에듀와 이프렌즈 학원의 <a href="https://efriends1.cafe24.com/html/document.php?id=PP" target="_blank" rel="noopener">개인정보 수집·이용</a> 및 처리업무 위탁에 동의합니다. 등록 절차 외에는 쓰지 않아요.</span></label>
+    </div>
+
+    <button type="submit" class="submit" id="submit">등록 신청하기</button>
     <p class="err" id="err" role="alert"></p>
   </form>
 
   <div class="done" id="done" hidden>
     <div class="ok">✓</div>
-    <h2>접수됐어요</h2>
-    <p>김민정 원장이 확인한 뒤 카톡으로 다음 안내를 드릴게요.<br>고맙습니다 🙏</p>
+    <h2>로아유에듀에 접수됐어요</h2>
+    <p id="donemsg">이어서 이프렌즈 학원 등록 페이지로 넘어갑니다…</p>
   </div>
 </div>
+
+<!-- 학원 등록폼으로 넘기는 숨은 폼 (efriends1.cafe24.com) -->
+<form id="ef" method="post" action="https://efriends1.cafe24.com/common/request.php" accept-charset="UTF-8" hidden></form>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (function () {
   const Q = new URLSearchParams(location.search);
   const PROGRAM = (Q.get('p') || '세부 이프렌즈 가족캠프').slice(0, 40);
-  document.getElementById('title').textContent = PROGRAM + ' 등록 정보';
-  document.title = PROGRAM + ' 등록 정보 | 로아유에듀';
+  document.getElementById('title').textContent = PROGRAM + ' 등록';
+  document.title = PROGRAM + ' 등록 | 로아유에듀';
 
-  const sb = window.supabase.createClient('https://kvbyaunvzmadgdottcgh.supabase.co', 'sb_publishable_-Tu7JER5MB6wNBU2ainzfQ_VVMzzJAH');
+  // 이프렌즈 학원 등록폼(efriends1.cafe24.com)의 프로그램 코드 그대로
+  const PROGRAMS = [
+    ['성수기 (방학)', [
+      ['0637650013', '알리시아 본캠 · 엄마+아이1', '1,112,500원 / 1주'],
+      ['4470160012', '알리시아 본캠 · 엄마+아이2', '1,737,500원 / 1주'],
+      ['5641290016', '알리시아 본캠 · 엄마+아이3', '2,362,500원 / 4주'],
+      ['7858930001', '알리시아 IT파크 · 엄마+아이1', '1,162,500원 / 1주'],
+      ['6927280002', '알리시아 IT파크 · 엄마+아이2', '1,787,500원 / 1주'],
+      ['6196090003', '주니어캠프 (아이 혼자)', '1,112,500원 / 1주'],
+      ['9475880014', '통학형', '687,500원 / 1주'],
+    ]],
+    ['비수기 (학기 중)', [
+      ['3976450010', '엄마+아이1', '712,500원 / 1주'],
+      ['1194500008', '엄마+아이2', '1,237,500원 / 1주'],
+      ['7142620009', '엄마+아이3', '1,637,500원 / 1주'],
+      ['3650260011', '조기유학 관리형 (아이 혼자)', '725,000원 / 1주'],
+      ['9344550015', '통학형', '400,000원 / 1주'],
+    ]],
+  ];
   const $ = (id) => document.getElementById(id);
-  const peopleEl = $('people');
-  let n = 0;
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const preset = Q.get('prog') || '';
+  $('programs').innerHTML = PROGRAMS.map(([g, items]) => `<div class="grp">${esc(g)}</div>` + items.map(([code, name, price]) =>
+    `<label class="opt"><input type="radio" name="prog" value="${code}" ${code === preset ? 'checked' : ''}><span>${esc(name)}<small>${esc(price)} · 학원 공식 가격</small></span></label>`).join('')).join('');
 
-  function personHtml(id, role) {
-    const isG = role === 'guardian';
-    return `
-      <h3><span>${isG ? '보호자' : '아이'} ${id}</span>${n > 1 ? `<button type="button" data-del="${id}">지우기</button>` : ''}</h3>
-      <div class="f"><span class="lab">구분</span><div class="chips">
-        <label class="chip"><input type="radio" name="r${id}" value="guardian" ${isG ? 'checked' : ''}><span>보호자</span></label>
-        <label class="chip"><input type="radio" name="r${id}" value="student" ${isG ? '' : 'checked'}><span>아이</span></label></div></div>
-      <div class="f"><label class="lab" for="ko${id}">성명 (한글) <i>*</i></label><input type="text" id="ko${id}" placeholder="홍길동" required autocomplete="off"></div>
-      <div class="f"><label class="lab" for="en${id}">영문명 (여권) <i>*</i></label><input type="text" id="en${id}" placeholder="HONG GILDONG" required autocomplete="off" style="text-transform:uppercase"></div>
-      <div class="row">
-        <div class="f"><label class="lab" for="b${id}">생년월일 <i>*</i></label><input type="date" id="b${id}" required></div>
-        <div class="f"><span class="lab">성별 <i>*</i></span><div class="chips">
-          <label class="chip"><input type="radio" name="g${id}" value="F"><span>여</span></label>
-          <label class="chip"><input type="radio" name="g${id}" value="M"><span>남</span></label></div></div>
-      </div>`;
-  }
-
-  function addPerson(role) {
-    n += 1;
+  // 아이 카드
+  const kidsEl = $('kids');
+  let kn = 0;
+  function addKid() {
+    const cards = kidsEl.querySelectorAll('.person');
+    if (cards.length >= 3) return;
+    kn += 1;
+    const id = kn;
     const d = document.createElement('div');
-    d.className = 'person';
-    d.dataset.id = n;
-    d.innerHTML = personHtml(n, role);
-    peopleEl.appendChild(d);
+    d.className = 'person'; d.dataset.id = id;
+    d.innerHTML = `
+      <h3><span>아이</span><button type="button" data-del="${id}">지우기</button></h3>
+      <div class="f"><label class="lab" for="kko${id}">성명 <i>*</i></label><input type="text" id="kko${id}" placeholder="홍아이" required></div>
+      <div class="f"><label class="lab" for="ken${id}">영문명 (여권) <i>*</i></label><input type="text" id="ken${id}" placeholder="HONG AI" required style="text-transform:uppercase"></div>
+      <div class="row">
+        <div class="f"><label class="lab" for="kb${id}">생년월일 <i>*</i></label><input type="date" id="kb${id}" required></div>
+        <div class="f"><span class="lab">성별 <i>*</i></span><div class="chips">
+          <label class="chip"><input type="radio" name="kg${id}" value="F"><span>여</span></label>
+          <label class="chip"><input type="radio" name="kg${id}" value="M"><span>남</span></label></div></div>
+      </div>`;
+    kidsEl.appendChild(d);
     renumber();
   }
   function renumber() {
-    const cards = [...peopleEl.querySelectorAll('.person')];
-    cards.forEach((c, i) => {
-      const role = c.querySelector('input[type=radio][value=guardian]').checked ? '보호자' : '아이';
-      c.querySelector('h3 span').textContent = role + ' ' + (i + 1);
-      const del = c.querySelector('h3 button');
-      if (del) del.hidden = cards.length < 2;
-    });
+    const cards = [...kidsEl.querySelectorAll('.person')];
+    cards.forEach((c, i) => { c.querySelector('h3 span').textContent = '아이 ' + (i + 1); c.querySelector('h3 button').hidden = cards.length < 2; });
     $('count').textContent = cards.length + '명';
+    $('add').disabled = cards.length >= 3;
   }
-  peopleEl.addEventListener('click', (e) => {
-    const b = e.target.closest('button[data-del]');
-    if (!b) return;
-    b.closest('.person').remove();
-    renumber();
-  });
-  peopleEl.addEventListener('change', (e) => { if (e.target.type === 'radio') renumber(); });
-  $('add').addEventListener('click', () => addPerson('student'));
-  addPerson('guardian');
-  addPerson('student');
+  kidsEl.addEventListener('click', (e) => { const b = e.target.closest('button[data-del]'); if (!b) return; b.closest('.person').remove(); renumber(); });
+  $('add').addEventListener('click', addKid);
+  addKid();
+
+  // 종료일 = 시작일 + 주수*7 - 1 (학원 계산식과 동일: 2027-01-31 + 4주 → 2027-02-27)
+  function endDate(start, weeks) {
+    if (!start || !weeks) return '';
+    const d = new Date(start + 'T00:00:00'); d.setDate(d.getDate() + Number(weeks) * 7 - 1);
+    return d.toISOString().slice(0, 10);
+  }
+  function showEnd() { const e = endDate($('start').value, $('weeks').value); $('endhint').textContent = e ? '종료일 ' + e + ' (학원 기준 자동 계산)' : ''; }
+  $('start').addEventListener('change', showEnd); $('weeks').addEventListener('change', showEnd);
 
   const pick = (name) => (document.querySelector(`input[name="${name}"]:checked`) || {}).value || '';
   const val = (id) => ($(id) ? $(id).value.trim() : '');
+  const sb = window.supabase.createClient('https://kvbyaunvzmadgdottcgh.supabase.co', 'sb_publishable_-Tu7JER5MB6wNBU2ainzfQ_VVMzzJAH');
 
   $('form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const err = $('err');
-    err.textContent = '';
-    const start = val('start'), weeks = val('weeks'), phone = val('phone');
-    if (!start || !weeks) { err.textContent = '시작일과 희망 주수를 골라주세요.'; return; }
-    if (!phone) { err.textContent = '연락처를 적어주세요.'; return; }
-
-    const people = [];
-    for (const c of peopleEl.querySelectorAll('.person')) {
+    const err = $('err'); err.textContent = '';
+    const phone = val('phone').replace(/[^0-9]/g, ''), email = val('email');
+    const start = val('start'), weeks = val('weeks'), depart = val('depart'), prog = pick('prog');
+    const mom = { name_ko: val('mko'), name_en: val('men').toUpperCase(), birth: val('mb'), gender: pick('mg') };
+    const kids = [];
+    for (const c of kidsEl.querySelectorAll('.person')) {
       const id = c.dataset.id;
-      const p = { role: pick('r' + id) || 'student', name_ko: val('ko' + id), name_en: val('en' + id).toUpperCase(), birth: val('b' + id), gender: pick('g' + id) };
-      if (!p.name_ko || !p.name_en || !p.birth || !p.gender) { err.textContent = '모든 사람의 성명·영문명·생년월일·성별을 채워주세요.'; return; }
-      people.push(p);
+      const k = { role: 'student', name_ko: val('kko' + id), name_en: val('ken' + id).toUpperCase(), birth: val('kb' + id), gender: pick('kg' + id) };
+      if (k.name_ko || k.name_en || k.birth) {
+        if (!k.name_ko || !k.name_en || !k.birth || !k.gender) { err.textContent = '아이의 성명·영문명·생년월일·성별을 모두 채워주세요.'; return; }
+        kids.push(k);
+      }
     }
-    if (!$('agree').checked) { err.textContent = '정보 전달 동의에 체크해 주세요.'; return; }
+    if (!phone) { err.textContent = '출국자 연락처를 적어주세요.'; return; }
+    if (!start || !weeks) { err.textContent = '연수 시작일과 희망 주수를 골라주세요.'; return; }
+    if (!prog) { err.textContent = '프로그램을 하나 골라주세요.'; return; }
+    const momFilled = mom.name_ko || mom.name_en || mom.birth;
+    if (momFilled && (!mom.name_ko || !mom.name_en || !mom.birth)) { err.textContent = '엄마(보호자)의 성명·영문명·생년월일을 모두 채워주세요.'; return; }
+    if (!momFilled && !kids.length) { err.textContent = '엄마 또는 아이 정보를 한 명 이상 적어주세요.'; return; }
+    if (!$('agree').checked) { err.textContent = '개인정보 동의에 체크해 주세요.'; return; }
 
-    const main = people.find(p => p.role === 'guardian') || people[0];
-    const others = people.filter(p => p !== main);
-    const payload = { name_ko: main.name_ko, name_en: main.name_en, birth_date: main.birth, gender: main.gender, phone: phone, companions: others.length ? others : null, updated_at: new Date().toISOString() };
-    const line = (p) => `${p.role === 'guardian' ? '보호자' : '아이'} ${p.name_ko} / ${p.name_en} / ${p.birth} / ${p.gender === 'F' ? '여' : '남'}`;
-    const note = [`[${PROGRAM} 등록 정보] ${new Date().toLocaleDateString('ko-KR')}`, `시작일 ${start} · 희망 ${weeks} · 인원 ${people.length}명`, ...people.map(line)].join('\n');
+    const end = endDate(start, weeks);
+    const progName = (PROGRAMS.flatMap(g => g[1]).find(p => p[0] === prog) || [])[1] || prog;
+    const addons = [...document.querySelectorAll('input[name=addon]:checked')].map(i => i.parentElement.textContent.trim().split('\n')[0]);
+    const remark = val('remark');
 
-    const btn = $('submit');
-    btn.disabled = true; btn.textContent = '보내는 중…';
+    // 1) 로아유에듀 고객 테이블에 저장 (기존 등록 폼과 같은 RPC)
+    const main = momFilled ? mom : kids[0];
+    const others = momFilled ? kids : kids.slice(1);
+    const payload = { name_ko: main.name_ko, name_en: main.name_en, birth_date: main.birth, gender: main.gender || null, phone: phone, email: email || null, companions: others.length ? others : null, updated_at: new Date().toISOString() };
+    const g = (x) => x === 'F' ? '여' : x === 'M' ? '남' : '-';
+    const note = [
+      `[${PROGRAM} 등록 정보] ${new Date().toLocaleDateString('ko-KR')}`,
+      `프로그램 ${progName} (${prog})${addons.length ? ' + ' + addons.join(', ') : ''}`,
+      `시작일 ${start} · ${weeks}주 · 종료일 ${end}${depart ? ' · 희망 출발일 ' + depart : ''}`,
+      momFilled ? `보호자 ${mom.name_ko} / ${mom.name_en} / ${mom.birth} / ${g(mom.gender)}` : '보호자 없음 (아이만)',
+      ...kids.map((k, i) => `아이${i + 1} ${k.name_ko} / ${k.name_en} / ${k.birth} / ${g(k.gender)}`),
+      remark ? `문의: ${remark}` : '',
+      '→ 이프렌즈 학원 등록폼(efriends1.cafe24.com)으로 자동 전달됨',
+    ].filter(Boolean).join('\n');
+
+    const btn = $('submit'); btn.disabled = true; btn.textContent = '보내는 중…';
     try {
       const { error } = await sb.rpc('customer_self_save', { p_id: null, p_payload: payload, p_note: note });
       if (error) throw error;
-      $('form').hidden = true; $('done').hidden = false; window.scrollTo(0, 0);
     } catch (ex) {
       console.error(ex);
-      err.textContent = '보내지 못했어요. 잠시 후 다시 눌러주시거나 카톡으로 알려주세요.';
-      btn.disabled = false; btn.textContent = '등록 정보 보내기';
+      err.textContent = '로아유에듀 쪽 저장이 안 됐어요. 잠시 후 다시 눌러주시거나 카톡으로 알려주세요.';
+      btn.disabled = false; btn.textContent = '등록 신청하기';
+      return;
     }
+
+    // 2) 이프렌즈 학원 등록폼으로 그대로 전달 (학원 폼의 필드명 그대로)
+    const ef = $('ef'); ef.innerHTML = '';
+    const add = (n, v) => { const i = document.createElement('input'); i.type = 'hidden'; i.name = n; i.value = v == null ? '' : v; ef.appendChild(i); };
+    add('abroad_title', '로아유에듀 (김민정 원장 010-9655-5455)');
+    add('user_tel', phone); add('user_email', email);
+    add('mon_name', momFilled ? mom.name_ko : ''); add('mon_ename', momFilled ? mom.name_en : ''); add('mon_birth', momFilled ? mom.birth : '');
+    [1, 2, 3].forEach(i => { const k = kids[i - 1] || {}; add(`child${i}_name`, k.name_ko || ''); add(`child${i}_ename`, k.name_en || ''); add(`child${i}_birth`, k.birth || ''); });
+    add('hope_sdate', depart); add('training_sdate', start); add('training_week', weeks); add('training_edate', end);
+    add('program_code', prog);
+    [...document.querySelectorAll('input[name=addon]:checked')].forEach(i => add('add_program[]', i.value));
+    const kidLine = kids.map(k => `${k.name_ko}(${g(k.gender)})`).join(', ');
+    add('remark', `[로아유에듀 등록] ${PROGRAM}${momFilled ? ' · 보호자 ' + mom.name_ko + '(' + g(mom.gender) + ')' : ''}${kidLine ? ' · 아이 ' + kidLine : ''}` + (remark ? '\n' + remark : ''));
+    add('agree1', 'Y'); add('agree2', 'Y');
+
+    $('form').hidden = true; $('done').hidden = false; window.scrollTo(0, 0);
+    setTimeout(() => ef.submit(), 1200);
   });
 })();
 </script>
