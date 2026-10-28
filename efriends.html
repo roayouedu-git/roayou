@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>등록 정보 입력 | 로아유에듀</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--ink:#222;--text:#484848;--muted:#717171;--line:#ebebeb;--soft:#f7f7f7;--pink:#fb7185;--pink-d:#e11d48;--ok:#0f9d58}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--text);font-family:'Pretendard Variable',Pretendard,-apple-system,'Malgun Gothic',sans-serif;line-height:1.6;-webkit-text-size-adjust:100%}
+.wrap{max-width:520px;margin:0 auto;padding:0 16px 80px}
+.top{display:flex;align-items:center;gap:10px;padding:18px 0 6px}
+.logo{width:34px;height:34px;border-radius:50%;background:var(--pink);color:#fff;font-weight:900;display:grid;place-items:center}
+.top b{color:var(--ink);font-size:1rem}
+h1{font-size:1.4rem;line-height:1.3;color:var(--ink);letter-spacing:-.02em;margin:18px 0 6px}
+.sub{color:var(--muted);font-size:.93rem;margin:0 0 18px}
+.card{border:1px solid var(--line);border-radius:16px;padding:18px;margin:0 0 14px;box-shadow:0 6px 16px rgba(0,0,0,.05)}
+.card h2{font-size:1.02rem;color:var(--ink);margin:0 0 12px;letter-spacing:-.01em;display:flex;justify-content:space-between;align-items:center}
+.f{margin:0 0 12px}
+.lab{display:block;font-size:.84rem;color:var(--muted);margin:0 0 5px;font-weight:600}
+.lab i{color:var(--pink-d);font-style:normal}
+input[type=text],input[type=tel],input[type=date],select{width:100%;border:1px solid #ddd;border-radius:10px;padding:11px 12px;font:inherit;font-size:16px;color:var(--ink);background:#fff}
+input:focus,select:focus{outline:2px solid var(--pink);border-color:var(--pink)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0}
+.chip span{display:inline-block;border:1px solid #ddd;border-radius:999px;padding:7px 14px;font-size:.9rem;color:var(--ink);cursor:pointer}
+.chip input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chip input:focus-visible+span{outline:2px solid var(--pink)}
+.hint{font-size:.8rem;color:var(--muted);margin:5px 0 0}
+.person{border:1px dashed #ddd;border-radius:12px;padding:14px;margin:0 0 10px;background:var(--soft)}
+.person h3{margin:0 0 10px;font-size:.95rem;color:var(--ink);display:flex;justify-content:space-between;align-items:center}
+.person h3 button{border:0;background:none;color:var(--muted);font:inherit;font-size:.82rem;cursor:pointer;text-decoration:underline}
+.add{width:100%;border:1px dashed var(--pink);background:#fff1f2;color:var(--pink-d);border-radius:12px;padding:12px;font:inherit;font-weight:700;cursor:pointer}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--ink)}
+.agree input{margin-top:4px;width:18px;height:18px}
+.submit{width:100%;border:0;background:var(--pink);color:#fff;border-radius:14px;padding:16px;font:inherit;font-size:1.05rem;font-weight:800;cursor:pointer;margin-top:6px}
+.submit:disabled{opacity:.6;cursor:default}
+.err{color:var(--pink-d);font-size:.88rem;margin:10px 0 0;min-height:1.2em}
+.done{text-align:center;padding:40px 10px}
+.done .ok{width:64px;height:64px;border-radius:50%;background:#ecfdf3;color:var(--ok);display:grid;place-items:center;margin:0 auto 16px;font-size:2rem}
+.done h2{color:var(--ink);margin:0 0 8px}
+.done p{color:var(--muted);margin:0}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div class="logo">R</div><b>로아유에듀</b></div>
+  <h1 id="title">등록 정보 입력</h1>
+  <p class="sub" id="sub">학원 등록에 필요한 최소 정보만 받아요. 2~3분이면 끝납니다.</p>
+
+  <form id="form" novalidate>
+    <div class="card">
+      <h2>일정</h2>
+      <div class="row">
+        <div class="f"><label class="lab" for="start">시작일 <i>*</i></label><input type="date" id="start" required></div>
+        <div class="f"><label class="lab" for="weeks">희망 주수 <i>*</i></label>
+          <select id="weeks" required>
+            <option value="">고르기</option>
+            <option>1주</option><option>2주</option><option>3주</option><option selected>4주</option>
+            <option>5주</option><option>6주</option><option>7주</option><option>8주</option>
+            <option>9주</option><option>10주</option><option>11주</option><option>12주</option>
+            <option>12주 이상</option>
+          </select></div>
+      </div>
+      <div class="f"><label class="lab" for="phone">연락처 <i>*</i></label><input type="tel" id="phone" placeholder="010-1234-5678" required autocomplete="tel"><p class="hint">접수 확인 카톡을 드릴 번호예요.</p></div>
+    </div>
+
+    <div class="card">
+      <h2>가는 사람 <span class="hint" id="count"></span></h2>
+      <p class="hint" style="margin:0 0 12px">보호자와 아이 모두 한 명씩 적어주세요. 영문 이름은 <b>여권에 적힌 그대로</b> 적어주세요.</p>
+      <div id="people"></div>
+      <button type="button" class="add" id="add">+ 한 명 더 추가</button>
+    </div>
+
+    <div class="card">
+      <label class="agree"><input type="checkbox" id="agree" required><span>학원 등록을 위해 위 정보를 로아유에듀와 해당 학원에 전달하는 데 동의합니다. 등록 절차가 끝나면 목적 외에는 쓰지 않아요.</span></label>
+    </div>
+
+    <button type="submit" class="submit" id="submit">등록 정보 보내기</button>
+    <p class="err" id="err" role="alert"></p>
+  </form>
+
+  <div class="done" id="done" hidden>
+    <div class="ok">✓</div>
+    <h2>접수됐어요</h2>
+    <p>김민정 원장이 확인한 뒤 카톡으로 다음 안내를 드릴게요.<br>고맙습니다 🙏</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  const Q = new URLSearchParams(location.search);
+  const PROGRAM = (Q.get('p') || '세부 이프렌즈 가족캠프').slice(0, 40);
+  document.getElementById('title').textContent = PROGRAM + ' 등록 정보';
+  document.title = PROGRAM + ' 등록 정보 | 로아유에듀';
+
+  const sb = window.supabase.createClient('https://kvbyaunvzmadgdottcgh.supabase.co', 'sb_publishable_-Tu7JER5MB6wNBU2ainzfQ_VVMzzJAH');
+  const $ = (id) => document.getElementById(id);
+  const peopleEl = $('people');
+  let n = 0;
+
+  function personHtml(id, role) {
+    const isG = role === 'guardian';
+    return `
+      <h3><span>${isG ? '보호자' : '아이'} ${id}</span>${n > 1 ? `<button type="button" data-del="${id}">지우기</button>` : ''}</h3>
+      <div class="f"><span class="lab">구분</span><div class="chips">
+        <label class="chip"><input type="radio" name="r${id}" value="guardian" ${isG ? 'checked' : ''}><span>보호자</span></label>
+        <label class="chip"><input type="radio" name="r${id}" value="student" ${isG ? '' : 'checked'}><span>아이</span></label></div></div>
+      <div class="f"><label class="lab" for="ko${id}">성명 (한글) <i>*</i></label><input type="text" id="ko${id}" placeholder="홍길동" required autocomplete="off"></div>
+      <div class="f"><label class="lab" for="en${id}">영문명 (여권) <i>*</i></label><input type="text" id="en${id}" placeholder="HONG GILDONG" required autocomplete="off" style="text-transform:uppercase"></div>
+      <div class="row">
+        <div class="f"><label class="lab" for="b${id}">생년월일 <i>*</i></label><input type="date" id="b${id}" required></div>
+        <div class="f"><span class="lab">성별 <i>*</i></span><div class="chips">
+          <label class="chip"><input type="radio" name="g${id}" value="F"><span>여</span></label>
+          <label class="chip"><input type="radio" name="g${id}" value="M"><span>남</span></label></div></div>
+      </div>`;
+  }
+
+  function addPerson(role) {
+    n += 1;
+    const d = document.createElement('div');
+    d.className = 'person';
+    d.dataset.id = n;
+    d.innerHTML = personHtml(n, role);
+    peopleEl.appendChild(d);
+    renumber();
+  }
+  function renumber() {
+    const cards = [...peopleEl.querySelectorAll('.person')];
+    cards.forEach((c, i) => {
+      const role = c.querySelector('input[type=radio][value=guardian]').checked ? '보호자' : '아이';
+      c.querySelector('h3 span').textContent = role + ' ' + (i + 1);
+      const del = c.querySelector('h3 button');
+      if (del) del.hidden = cards.length < 2;
+    });
+    $('count').textContent = cards.length + '명';
+  }
+  peopleEl.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-del]');
+    if (!b) return;
+    b.closest('.person').remove();
+    renumber();
+  });
+  peopleEl.addEventListener('change', (e) => { if (e.target.type === 'radio') renumber(); });
+  $('add').addEventListener('click', () => addPerson('student'));
+  addPerson('guardian');
+  addPerson('student');
+
+  const pick = (name) => (document.querySelector(`input[name="${name}"]:checked`) || {}).value || '';
+  const val = (id) => ($(id) ? $(id).value.trim() : '');
+
+  $('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const err = $('err');
+    err.textContent = '';
+    const start = val('start'), weeks = val('weeks'), phone = val('phone');
+    if (!start || !weeks) { err.textContent = '시작일과 희망 주수를 골라주세요.'; return; }
+    if (!phone) { err.textContent = '연락처를 적어주세요.'; return; }
+
+    const people = [];
+    for (const c of peopleEl.querySelectorAll('.person')) {
+      const id = c.dataset.id;
+      const p = { role: pick('r' + id) || 'student', name_ko: val('ko' + id), name_en: val('en' + id).toUpperCase(), birth: val('b' + id), gender: pick('g' + id) };
+      if (!p.name_ko || !p.name_en || !p.birth || !p.gender) { err.textContent = '모든 사람의 성명·영문명·생년월일·성별을 채워주세요.'; return; }
+      people.push(p);
+    }
+    if (!$('agree').checked) { err.textContent = '정보 전달 동의에 체크해 주세요.'; return; }
+
+    const main = people.find(p => p.role === 'guardian') || people[0];
+    const others = people.filter(p => p !== main);
+    const payload = { name_ko: main.name_ko, name_en: main.name_en, birth_date: main.birth, gender: main.gender, phone: phone, companions: others.length ? others : null, updated_at: new Date().toISOString() };
+    const line = (p) => `${p.role === 'guardian' ? '보호자' : '아이'} ${p.name_ko} / ${p.name_en} / ${p.birth} / ${p.gender === 'F' ? '여' : '남'}`;
+    const note = [`[${PROGRAM} 등록 정보] ${new Date().toLocaleDateString('ko-KR')}`, `시작일 ${start} · 희망 ${weeks} · 인원 ${people.length}명`, ...people.map(line)].join('\n');
+
+    const btn = $('submit');
+    btn.disabled = true; btn.textContent = '보내는 중…';
+    try {
+      const { error } = await sb.rpc('customer_self_save', { p_id: null, p_payload: payload, p_note: note });
+      if (error) throw error;
+      $('form').hidden = true; $('done').hidden = false; window.scrollTo(0, 0);
+    } catch (ex) {
+      console.error(ex);
+      err.textContent = '보내지 못했어요. 잠시 후 다시 눌러주시거나 카톡으로 알려주세요.';
+      btn.disabled = false; btn.textContent = '등록 정보 보내기';
+    }
+  });
+})();
+</script>
+</body>
+</html>
